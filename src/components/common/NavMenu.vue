@@ -107,13 +107,13 @@
     }
     .mowiki__nav-menu {
       width: $collapsed-menu-width;
-      @apply fixed h-[100vh] pt-2;
+      @apply fixed h-[100vh] pt-2 z-[var(--mowiki-sidebar-z-index)];
       .el-menu-item {
         @apply flex gap-x-3 text-lg;
       }
       &__collapse-control {
         transform: translateX(75%);
-        @apply cursor-pointer absolute z-10 p-2 top-0 right-0 bg-white border-none shadow;
+        @apply cursor-pointer absolute z-[var(--mowiki-sidebar-z-index)] p-2 top-0 right-0 bg-white border-none shadow;
       }
       &--expanded {
         width: var(--mowiki-expanded-sidebar-width);

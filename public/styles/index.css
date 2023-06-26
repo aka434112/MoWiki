@@ -9,10 +9,11 @@ body,
   --mowiki-collapsed-sidebar-width: 5vw;
   --mowiki-view-top-bottom-padding: 1.5rem;
   --mowiki-pagination-height: 4rem;
+  --mowiki-sidebar-z-index: 1;
 }
 
 .el-pagination {
   --el-pagination-font-size: 1rem;
   @apply bg-white h-[var(--mowiki-pagination-height)];
-  @apply w-[100vw] left-0 flex items-center justify-center fixed bottom-0 pb-[var(--mowiki-view-top-bottom-padding)];
+  @apply w-[100vw] left-0 flex items-center justify-center fixed bottom-0;
 }
