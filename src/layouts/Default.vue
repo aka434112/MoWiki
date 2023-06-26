@@ -43,10 +43,10 @@
       @apply px-8 flex flex-col h-full;
     }
     &__view {
-      @apply py-[var(--mowiki-view-top-bottom-padding)] flex-grow;
+      @apply flex-grow;
     }
     &__route-title {
-      @apply text-xl;
+      @apply font-semibold text-xl;
     }
   }
 </style>

@@ -11,7 +11,14 @@
     >
       <div class="mowiki__nav-menu__logo-container">
         <div class="mowiki__nav-menu__title-container">
-          <img :src="MowikiLogo" class="mowiki__nav-menu__logo" />
+          <div
+            :class="[
+              'mowiki__nav-menu__logo',
+              menuCollapsed ? 'mowiki__nav-menu__collapsed-logo' : '',
+            ]"
+          >
+            <img :src="MowikiLogo" />
+          </div>
           <h1 v-show="!menuCollapsed" class="mowiki__nav-menu__title">
             {{ t('title') }}
           </h1>
@@ -89,11 +96,12 @@
 <style lang="scss" scoped>
   $collapsed-menu-width: var(--mowiki-collapsed-sidebar-width);
   .el-menu--collapse {
+    --el-menu-base-level-padding: 0rem;
     :deep(.el-menu-tooltip__trigger) {
-      margin-left: calc(
-        (($collapsed-menu-width - (2 * var(--el-menu-base-level-padding))) / 2) /
-          2
-      );
+      left: calc($collapsed-menu-width / 2);
+      svg {
+        transform: translateX(-50%);
+      }
     }
   }
   .mowiki__nav-menu__container {
@@ -109,17 +117,28 @@
       width: $collapsed-menu-width;
       @apply fixed h-[100vh] pt-2 z-[var(--mowiki-sidebar-z-index)];
       .el-menu-item {
-        @apply flex gap-x-3 text-lg;
+        @apply flex gap-x-3 text-sm;
       }
       &__collapse-control {
         transform: translateX(75%);
-        @apply cursor-pointer absolute z-[var(--mowiki-sidebar-z-index)] p-2 top-0 right-0 bg-white border-none shadow;
+        background: white;
+        @apply cursor-pointer absolute z-[var(--mowiki-sidebar-z-index)] p-2 top-0 right-0 border-none shadow;
       }
       &--expanded {
         width: var(--mowiki-expanded-sidebar-width);
       }
       &__logo {
-        @apply w-[3vw] pl-[var(--el-menu-base-level-padding)];
+        @apply relative h-10 pl-[var(--el-menu-base-level-padding)];
+        img {
+          @apply h-full;
+        }
+      }
+      &__collapsed-logo {
+        @apply relative w-full;
+        left: calc(var(--mowiki-collapsed-sidebar-width) / 2);
+        img {
+          transform: translateX(-50%);
+        }
       }
       &__title {
         @apply text-2xl;

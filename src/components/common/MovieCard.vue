@@ -103,9 +103,9 @@
 
 <style lang="scss" scoped>
   .mowiki__movie-card {
-    @apply w-96 h-48;
+    @apply w-80 h-32;
     &__title {
-      @apply w-3/4 truncate font-semibold;
+      @apply w-3/4 truncate text-sm font-semibold;
     }
     &__title-container {
       @apply flex justify-between items-center;
@@ -114,15 +114,15 @@
       @apply cursor-pointer;
     }
     &__year {
-      @apply font-normal;
+      @apply font-normal text-xs;
     }
     &__year-value {
-      @apply font-medium;
+      @apply font-medium text-xs;
     }
     &__details {
       @apply flex justify-between;
       a {
-        @apply no-underline flex items-center;
+        @apply text-xs text-link no-underline flex items-center;
       }
     }
   }

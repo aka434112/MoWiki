@@ -17,6 +17,7 @@
       :movies="movies"
       :favorites="favorites"
       @update:favorites="setFavorites($event)"
+      class="mowiki__home__movies-container"
     />
     <el-pagination
       v-if="total"
@@ -104,7 +105,10 @@
 <style lang="scss" scoped>
   .mowiki__home {
     &__search-input {
-      @apply w-1/4 mb-2;
+      @apply w-1/3 mb-2;
+    }
+    &__movies-container {
+      @apply mb-[var(--mowiki-pagination-height)];
     }
   }
 </style>

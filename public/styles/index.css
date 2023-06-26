@@ -5,15 +5,17 @@ body,
 }
 
 :root {
-  --mowiki-expanded-sidebar-width: 15vw;
-  --mowiki-collapsed-sidebar-width: 5vw;
+  --mowiki-expanded-sidebar-width: 16vw;
+  --mowiki-collapsed-sidebar-width: 6vw;
   --mowiki-view-top-bottom-padding: 1.5rem;
   --mowiki-pagination-height: 4rem;
   --mowiki-sidebar-z-index: 1;
+  --mowiki-link-color: blue;
 }
 
 .el-pagination {
   --el-pagination-font-size: 1rem;
-  @apply bg-white h-[var(--mowiki-pagination-height)];
+  background: white;
+  @apply h-[var(--mowiki-pagination-height)];
   @apply w-[100vw] left-0 flex items-center justify-center fixed bottom-0;
 }

@@ -12,6 +12,9 @@ module.exports = {
         montserrat: ['Montserrat'],
       },
     },
+    colors: {
+      link: 'var(--mowiki-link-color)',
+    },
   },
   plugins: [],
 }

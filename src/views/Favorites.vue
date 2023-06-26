@@ -49,8 +49,11 @@
   .mowiki__favorites {
     &--no-favorites {
       @apply flex flex-col h-full items-center justify-center;
+      img {
+        @apply h-40;
+      }
       p {
-        @apply text-lg font-semibold block;
+        @apply text-sm font-semibold block;
       }
     }
   }
