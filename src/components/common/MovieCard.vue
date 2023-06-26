@@ -103,7 +103,7 @@
 
 <style lang="scss" scoped>
   .mowiki__movie-card {
-    @apply w-96 h-48;
+    @apply w-72 h-36;
     &__title {
       @apply w-3/4 truncate font-semibold;
     }

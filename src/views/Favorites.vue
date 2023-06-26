@@ -50,7 +50,7 @@
     &--no-favorites {
       @apply flex flex-col h-full items-center justify-center;
       p {
-        @apply text-xl font-semibold block;
+        @apply text-lg font-semibold block;
       }
     }
   }
