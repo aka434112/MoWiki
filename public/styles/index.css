@@ -19,3 +19,11 @@ body,
   @apply h-[var(--mowiki-pagination-height)];
   @apply w-[100vw] left-0 flex items-center justify-center fixed bottom-0;
 }
+
+.el-loading-spinner {
+  @apply fixed left-0 top-1/2 w-[100vw] !important;
+}
+
+.el-input__inner::placeholder {
+  @apply font-montserrat;
+}
