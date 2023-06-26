@@ -2,7 +2,6 @@ import { nextTick } from 'vue'
 import { WritableComputedRef } from '@vue/reactivity'
 import { Composer, createI18n, I18n, I18nOptions } from 'vue-i18n'
 import axios from 'axios'
-import { isFunction } from 'lodash-es'
 
 export const VUE_I18N_DEFAULT_LOCALE = 'en'
 export const VUE_I18N_DEFAULT_FALLBACK_LOCALE = 'en'
@@ -38,23 +37,33 @@ export function setI18nLanguage(
   return locale
 }
 
-const parseVueI18nLocaleMessages = (messages) => {
-  const defaultVal = messages?.default || {}
-  return isFunction(defaultVal) ? defaultVal() : defaultVal
+export const loadLocale = async (
+  file: string,
+  locale: string = VUE_I18N_DEFAULT_FALLBACK_LOCALE
+) => {
+  return fetch(`${LOCALES_FILE_PATH_PREFIX}${file}.${locale}.json`)
+    .then(async (response) => {
+      if (response.ok) {
+        const messages = await response.json()
+        i18n.global.mergeLocaleMessage(locale, messages)
+      } else {
+        throw new Error('Something went wrong!')
+      }
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
 
 export async function loadVueI18nLocaleMessages(
   locale: string = VUE_I18N_DEFAULT_FALLBACK_LOCALE
 ): Promise<string> {
-  const messages = await import(
-    /* @vite-ignore */ `${LOCALES_FILE_PATH_PREFIX}common.${locale}.js`
-  )
-  i18n.global.mergeLocaleMessage(locale, parseVueI18nLocaleMessages(messages))
+  await loadLocale('common')
   await nextTick()
   return setI18nLanguage(i18n, locale)
 }
 
-export async function addVueI18nLocaleMessages(localePath: string) {
+export async function addVueI18nLocaleMessages(file: string) {
   let currentLocale = VUE_I18N_DEFAULT_FALLBACK_LOCALE
   if (i18n.mode === 'legacy') {
     currentLocale = i18n.global.locale as string
@@ -62,18 +71,7 @@ export async function addVueI18nLocaleMessages(localePath: string) {
     currentLocale = (i18n.global.locale as WritableComputedRef<string>)
       .value as string
   }
-  try {
-    const localeFileNameEndsWith = `.${currentLocale}.js`
-    const localeFile = await import(
-      `${LOCALES_FILE_PATH_PREFIX}${localePath}${localeFileNameEndsWith}`
-    )
-    i18n.global.mergeLocaleMessage(
-      currentLocale,
-      parseVueI18nLocaleMessages(localeFile)
-    )
-  } catch (err) {
-    console.error('Translation load failure: ', err)
-  }
+  loadLocale(file)
 }
 
 export const i18n = setupI18n()

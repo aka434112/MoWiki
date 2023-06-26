@@ -65,13 +65,12 @@
   import { HomeFilled } from '@element-plus/icons-vue'
 
   import { ROUTE_NAMES, ROUTE_ICONS } from '@/const/route-details'
-  import { useNavigation, useNavigationLabels } from '@/composables/navigation'
+  import { useNavigationLabels } from '@/composables/navigation'
 
   export default defineComponent({
     setup() {
       const { t } = useI18n()
       const menuCollapsed = ref(true)
-      const navigations = useNavigation()
       const navigationLabels = useNavigationLabels(t)
 
       return {
@@ -81,7 +80,6 @@
         ROUTE_ICONS,
         HomeFilled,
         menuCollapsed,
-        navigations,
         navigationLabels,
       }
     },
