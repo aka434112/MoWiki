@@ -39,7 +39,7 @@ export default defineConfig({
     }),
     VueI18nPlugin({
       // Settings for i18n resource including paths
-      include: resolve(__dirname, 'locales/**'),
+      include: resolve(__dirname, './public/locales/**'),
       runtimeOnly: false,
     }),
     Icons({
